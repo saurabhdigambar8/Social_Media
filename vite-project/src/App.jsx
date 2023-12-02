@@ -6,20 +6,21 @@ import Sidebar from './components/Sidebar'
 import CreatePost from './components/CreatePost'
 import PostList from './components/PostList'
 import { useCallback, useState } from 'react'
+import PostListProvider from './Store/post-list-store'
 function App() {
-  const [selectedTab, setSelectdTab] = useState("Create Post")
+  const [selectedTab, setSelectdTab] = useState("Home")
 
   return (
-    <postListProvider>
+    <PostListProvider>
     <div className='app-container'>
-      <Sidebar selectedTab={selectedTab} setSelectdTab={setSelectdTab} />
+      <Sidebar selectedTab={selectedTab} setSelectdTab={setSelectdTab} ></Sidebar>
       <div className="content">
-        <Header />
-        {selectedTab == "Home" ? <PostList /> : <CreatePost />}
-        <Footer />
+        <Header></Header>
+        {selectedTab === "Home" ?<PostList></PostList> : <CreatePost></CreatePost>}
+        <Footer></Footer>
       </div>
     </div>
-    </postListProvider>
+    </PostListProvider>
   )
 }
 
